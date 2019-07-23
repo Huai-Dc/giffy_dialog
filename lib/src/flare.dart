@@ -15,6 +15,7 @@ class FlareGiffyDialog extends StatelessWidget {
   final double buttonRadius;
   final double cornerRadius;
   final VoidCallback onOkButtonPressed;
+  final VoidCallback onCancelButtonPressed;
 
   FlareGiffyDialog({
     Key key,
@@ -22,6 +23,7 @@ class FlareGiffyDialog extends StatelessWidget {
     @required this.flareAnimation,
     @required this.title,
     @required this.onOkButtonPressed,
+    this.onCancelButtonPressed,
     this.description,
     this.onlyOkButton = false,
     this.buttonOkText,
@@ -91,7 +93,10 @@ class FlareGiffyDialog extends StatelessWidget {
                           shape: RoundedRectangleBorder(
                               borderRadius:
                                   BorderRadius.circular(buttonRadius)),
-                          onPressed: () => Navigator.of(context).pop(),
+                          onPressed: (){
+                            onCancelButtonPressed();
+                            Navigator.of(context).pop();
+                          },
                           child: buttonCancelText ??
                               Text(
                                 'Cancel',
